@@ -1,0 +1,9 @@
+1543952555750:help
+1543952564287:exit
+1543957490229:help
+1543957521972:add-user
+1543957572063:exit
+1543957866299:help
+1543957878364:add-user
+1543957931749:add-user --first-name Yuriy --last-name Razzhivin -email yuriy_razzhivin@epam.com
+1543957958384:add-user --first-name=Yuriy --last-name=Razzhivin --email=yuriy_razzhivin@epam.com
