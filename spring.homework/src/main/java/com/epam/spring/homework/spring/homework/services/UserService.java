@@ -1,6 +1,7 @@
 package com.epam.spring.homework.spring.homework.services;
 
 import com.epam.spring.homework.spring.homework.domain.User;
+import lombok.Data;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -10,21 +11,14 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
+@Data
 public class UserService implements IUserService {
 
     private Map<Long, User> users = new ConcurrentHashMap<>();
-    private User currentUser;
+    private User selectedUser;
 
     public void setUsers(Map<Long, User> users) {
         this.users = users;
-    }
-
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
-    }
-
-    public User getCurrentUser() {
-        return currentUser;
     }
 
     @Nullable

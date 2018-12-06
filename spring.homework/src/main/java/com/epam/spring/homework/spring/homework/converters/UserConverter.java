@@ -1,4 +1,4 @@
-package com.epam.spring.homework.spring.homework;
+package com.epam.spring.homework.spring.homework.converters;
 
 import com.epam.spring.homework.spring.homework.domain.User;
 import com.epam.spring.homework.spring.homework.services.UserService;

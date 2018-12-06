@@ -11,8 +11,12 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/spring-context-3.2.xsd">
 
+<!--COMMON-->
 
+    <bean id="consoleService" class="com.epam.spring.homework.spring.homework.ConsoleService"/>
+    <bean id="consolePromptProvider" class="com.epam.spring.homework.spring.homework.ConsolePromptProvider"/>
 
+<!--USERS-->
     <bean id="yuriy" class="com.epam.spring.homework.spring.homework.domain.User">
         <constructor-arg value="Yuriy"/>
         <constructor-arg value="Razzhivin"/>
@@ -40,10 +44,49 @@
     <bean id="userService" class="com.epam.spring.homework.spring.homework.services.UserService">
         <property name="users" ref="defaultUsers"/>
     </bean>
-    <bean id="consoleService" class="com.epam.spring.homework.spring.homework.ConsoleService"/>
-    <bean id="connectedPromptProvider" class="com.epam.spring.homework.spring.homework.ConnectedPromptProvider"/>
-    <bean id="userConverter" class="com.epam.spring.homework.spring.homework.UserConverter"/>
-    <bean id="userValueProvider" class="com.epam.spring.homework.spring.homework.UserValueProvider"/>
 
+    <bean id="userConverter" class="com.epam.spring.homework.spring.homework.converters.UserConverter"/>
+    <bean id="userValueProvider" class="com.epam.spring.homework.spring.homework.value_providers.UserValueProvider"/>
 
+<!--EVENTS-->
+
+    <!--<bean id="dt" class="java.time.LocalDateTime" factory-method="of">-->
+        <!--<constructor-arg index="0" value="2018"/>-->
+        <!--<constructor-arg index="1">-->
+            <!--<bean class="java.time.Month">-->
+                <!--<property name="type" value="DECEMBER"/>-->
+            <!--</bean>-->
+        <!--</constructor-arg>-->
+        <!--<constructor-arg index="2" value="15"/>-->
+        <!--<constructor-arg index="3" value="15"/>-->
+        <!--<constructor-arg index="4" value="30"/>-->
+    <!--</bean>-->
+
+    <bean id="event1" class="com.epam.spring.homework.spring.homework.domain.Event">
+        <property name="name" value="Contratiempo"/>
+        <property name="basePrice" value="300"/>
+        <property name="rating" value="HIGH"/>
+    </bean>
+
+    <bean id="event2" class="com.epam.spring.homework.spring.homework.domain.Event">
+        <property name="name" value="Contratiempo Part 2"/>
+        <property name="basePrice" value="100"/>
+        <property name="rating" value="LOW"/>
+    </bean>
+
+    <bean id="event3" class="com.epam.spring.homework.spring.homework.domain.Event">
+        <property name="name" value="Contratiempo Part 3"/>
+        <property name="basePrice" value="150"/>
+        <property name="rating" value="LOW"/>
+    </bean>
+
+    <util:list id="defaultEvents" value-type="com.epam.spring.homework.spring.homework.domain.Event">
+        <ref bean="event1"/>
+        <ref bean="event2"/>
+        <ref bean="event3"/>
+    </util:list>
+
+    <bean id="eventService" class="com.epam.spring.homework.spring.homework.services.EventService">
+        <property name="events" ref="defaultEvents"/>
+    </bean>
 </beans>

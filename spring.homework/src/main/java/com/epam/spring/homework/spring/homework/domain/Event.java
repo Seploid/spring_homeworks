@@ -13,6 +13,8 @@ import java.util.TreeSet;
  */
 public class Event extends DomainObject {
 
+    private static Long counterOfIds = 0L;
+
     private String name;
 
     private NavigableSet<LocalDateTime> airDates = new TreeSet<>();
@@ -22,6 +24,10 @@ public class Event extends DomainObject {
     private EventRating rating;
 
     private NavigableMap<LocalDateTime, Auditorium> auditoriums = new TreeMap<>();
+
+    Event(){
+        this.setId(counterOfIds++);
+    }
 
     /**
      * Checks if event is aired on particular <code>dateTime</code> and assigns
