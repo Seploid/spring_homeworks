@@ -8,15 +8,37 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 public class UserService implements IUserService {
 
     private Map<Long, User> users = new ConcurrentHashMap<>();
+    private User currentUser;
+
+    public void setUsers(Map<Long, User> users) {
+        this.users = users;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
 
     @Nullable
     @Override
     public User getUserByEmail(@Nonnull String email) {
         return users.values().stream().filter(usr -> usr.getEmail().equals(email)).findFirst().get();
+    }
+
+    @Nullable
+    public Collection<User> findByName(@Nonnull String name) {
+        return users.values()
+                .stream()
+                .filter(usr -> usr.getEmail().contains(name) || usr.getFirstName().contains(name) || usr.getLastName().contains(name))
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -7,3 +7,37 @@
 1543957878364:add-user
 1543957931749:add-user --first-name Yuriy --last-name Razzhivin -email yuriy_razzhivin@epam.com
 1543957958384:add-user --first-name=Yuriy --last-name=Razzhivin --email=yuriy_razzhivin@epam.com
+1544036055968:exit
+1544037269785:help
+1544037348046:add-user --firstName=Yuriy --lastName=Razzhivin --yuriy_razzhivin@gmail.com
+1544037442207:exti
+1544037450593:exit
+1544038582395:help
+1544038590696:exit
+1544038817163:ezit
+1544038825825:exit
+1544041605830:help
+1544041639841:exit
+1544042363385:hekp
+1544042366176:help
+1544042371626:clear
+1544042384013:take-user --user as
+1544042653203:exit
+1544042834986:take-user --user[1;2H
+1544042838031:exit
+1544043324463:help
+1544043539484:show-all-users
+1544043574735:take-user --user (#null)\\ Roman\\ Pechersky\\ roman_pechersky@epam.com
+1544043650816:take-user --user wda
+1544043713234:show-all-users
+1544044337411:take-user --user (#
+1544044804089:exit
+1544044837782:show-all-users
+1544045078934:take-user --user (#null)\\ Roman\\ Pechersky\\ roman_pechersky@epam.com
+1544045103455:stacktrace
+1544045262952:take-user --user (#null)\\ Anton\\ Shaklein\\ anton_shaklein@epam.com
+1544045563807:take-user
+1544045592674:show-all-users
+1544045627324:take-user --user (#null)\\ Yuriy\\ Razzhivin\\ yuriy_rzzhivin@epam.com
+1544045676960:stacktrace
+1544046626282:show-all-users

@@ -11,7 +11,39 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/spring-context-3.2.xsd">
 
-    <bean id="userService" class="com.epam.spring.homework.spring.homework.services.UserService"/>
+
+
+    <util:map id="defaultUsers" key-type="java.lang.Long">
+        <entry key="1">
+            <bean class="com.epam.spring.homework.spring.homework.domain.User">
+                <constructor-arg value="Yuriy"/>
+                <constructor-arg value="Razzhivin"/>
+                <constructor-arg value="yuriy_rzzhivin@epam.com"/>
+            </bean>
+        </entry>
+        <entry key="2">
+            <bean class="com.epam.spring.homework.spring.homework.domain.User">
+                <constructor-arg value="Roman"/>
+                <constructor-arg value="Pechersky"/>
+                <constructor-arg value="roman_pechersky@epam.com"/>
+            </bean>
+        </entry>
+        <entry key="3">
+            <bean class="com.epam.spring.homework.spring.homework.domain.User">
+                <constructor-arg value="Anton"/>
+                <constructor-arg value="Shaklein"/>
+                <constructor-arg value="anton_shaklein@epam.com"/>
+            </bean>
+        </entry>
+    </util:map>
+
+    <bean id="userService" class="com.epam.spring.homework.spring.homework.services.UserService">
+        <property name="users" ref="defaultUsers"/>
+    </bean>
+    <bean id="consoleService" class="com.epam.spring.homework.spring.homework.ConsoleService"/>
+    <bean id="connectedPromptProvider" class="com.epam.spring.homework.spring.homework.ConnectedPromptProvider"/>
+    <bean id="userConverter" class="com.epam.spring.homework.spring.homework.UserConverter"/>
+    <bean id="userValueProvider" class="com.epam.spring.homework.spring.homework.UserValueProvider"/>
 
 
 </beans>

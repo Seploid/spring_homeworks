@@ -1,8 +1,6 @@
 package com.epam.spring.homework.spring.homework.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.NavigableSet;
 import java.util.Objects;
@@ -26,6 +24,11 @@ public class User extends DomainObject {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s (%s)", firstName, lastName, email);
     }
 
     @Override
