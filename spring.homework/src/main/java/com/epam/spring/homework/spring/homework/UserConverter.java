@@ -14,7 +14,7 @@ public class UserConverter implements Converter<String, User> {
     private final UserService userService;
 
     // (#45) foo bar
-    private final Pattern pattern = Pattern.compile(".*");
+    private final Pattern pattern = Pattern.compile("^\\(#(.*)\\) .+$");
 
     public UserConverter(UserService userService) {
         this.userService = userService;

@@ -12,6 +12,8 @@ import java.util.TreeSet;
 @Data
 public class User extends DomainObject {
 
+    private static Long counterOfIds = 0L;
+
     private String firstName;
 
     private String lastName;
@@ -21,6 +23,7 @@ public class User extends DomainObject {
     private NavigableSet<Ticket> tickets = new TreeSet<>();
 
     public User(String firstName, String lastName, String email) {
+        this.setId(counterOfIds++);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

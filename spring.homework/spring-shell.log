@@ -41,3 +41,14 @@
 1544045627324:take-user --user (#null)\\ Yuriy\\ Razzhivin\\ yuriy_rzzhivin@epam.com
 1544045676960:stacktrace
 1544046626282:show-all-users
+1544121150326:exit
+1544121292726:take-user --user (#null)\\ awd
+1544121296162:exit
+1544121390250:take-user --user (#0)\\ Yuriy\\ Razzhivin\\ yuriy_rzzhivin@epam.com
+1544121541152:exit
+1544121567123:take-user --user (#0)\\ Yuriy\\ Razzhivin\\ yuriy_rzzhivin@epam.com
+1544121594735:stacktrace
+1544121731496:add-user --email qweqwe@asda.wer --first-name asdasd --last-name werwrwer
+1544121751013:take-user --user (#3)\\ asdasd\\ werwrwer\\ qweqwe@asda.wer
+1544122038705:take-user
+1544122044976:take-user  --user (#0)\\ Yuriy\\ Razzhivin\\ yuriy_rzzhivin@epam.com
