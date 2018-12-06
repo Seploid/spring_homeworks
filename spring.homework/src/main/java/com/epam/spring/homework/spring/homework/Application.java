@@ -74,4 +74,11 @@ class EventCommands{
 		this.eventService.setSelectedEvent(event);
 		this.consoleService.write("Selected event is %s.", event.getName());
 	}
+
+	@ShellMethod("Show all events.")
+	public void showAllEvents(){
+		this.eventService.getAll()
+				.stream()
+				.forEach(event -> this.consoleService.write(event.toString()));
+	}
 }

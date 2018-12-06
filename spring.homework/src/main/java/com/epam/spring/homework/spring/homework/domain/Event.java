@@ -29,6 +29,11 @@ public class Event extends DomainObject {
         this.setId(counterOfIds++);
     }
 
+    @Override
+    public String toString() {
+        return String.format("(#%s) %s", getId(), getName());
+    }
+
     /**
      * Checks if event is aired on particular <code>dateTime</code> and assigns
      * auditorium to it.

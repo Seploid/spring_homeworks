@@ -59,3 +59,9 @@
 1544124805689:exit
 1544131459564:help
 1544131467933:exit
+1544131929745:select-event --event
+1544131979089:select-event --event (#0) edasd
+1544131997884:select-event --event (#0)\\ edasd
+1544132133808:show-all-events
+1544132311191:select-event --event
+1544132317224:stacktrace
