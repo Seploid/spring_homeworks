@@ -1,4 +1,4 @@
-package com.epam.spring.homework.spring.homework;
+package com.epam.spring.homework.spring.homework.converters;
 
 import com.epam.spring.homework.spring.homework.domain.User;
 import com.epam.spring.homework.spring.homework.services.UserService;
@@ -14,7 +14,7 @@ public class UserConverter implements Converter<String, User> {
     private final UserService userService;
 
     // (#45) foo bar
-    private final Pattern pattern = Pattern.compile(".*");
+    private final Pattern pattern = Pattern.compile("^\\(#(.*)\\) .+$");
 
     public UserConverter(UserService userService) {
         this.userService = userService;
