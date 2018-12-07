@@ -62,10 +62,19 @@
         <!--<constructor-arg index="4" value="30"/>-->
     <!--</bean>-->
 
+    <bean id="ldt1" class="java.time.LocalDateTime" factory-method="of">
+        <constructor-arg type="java.time.Month" value="DECEMBER"/>
+    </bean>
+
+    <util:set id="setAirDates" set-class="java.util.TreeSet">
+
+    </util:set>
+
     <bean id="event1" class="com.epam.spring.homework.spring.homework.domain.Event">
         <property name="name" value="Contratiempo"/>
         <property name="basePrice" value="300"/>
         <property name="rating" value="HIGH"/>
+        <property name="airDates" ref="setAirDates"/>
     </bean>
 
     <bean id="event2" class="com.epam.spring.homework.spring.homework.domain.Event">
