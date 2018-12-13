@@ -20,13 +20,16 @@ public class User extends DomainObject {
 
     private String email;
 
+    private String password;
+
     private NavigableSet<Ticket> tickets = new TreeSet<>();
 
-    public User(String firstName, String lastName, String email) {
+    public User(String firstName, String lastName, String email, String password) {
         this.setId(counterOfIds++);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
     }
 
     @Override
@@ -36,7 +39,7 @@ public class User extends DomainObject {
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, email);
+        return Objects.hash(firstName, lastName, email, password);
     }
 
     @Override
@@ -70,6 +73,13 @@ public class User extends DomainObject {
                 return false;
             }
         } else if (!lastName.equals(other.lastName)) {
+            return false;
+        }
+        if (password == null) {
+            if (other.password != null) {
+                return false;
+            }
+        } else if (!password.equals(other.password)) {
             return false;
         }
         return true;

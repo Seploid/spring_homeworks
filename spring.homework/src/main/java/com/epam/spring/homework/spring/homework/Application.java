@@ -7,6 +7,7 @@ import com.epam.spring.homework.spring.homework.services.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.shell.Availability;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
@@ -31,31 +32,57 @@ class UserCommands {
 		this.userService = userService;
 	}
 
-	@ShellMethod("Add new user")
-	public void addUser(String firstName, String lastName, String email) {
-		User user = new User(firstName, lastName, email);
-		this.userService.save(user);
-		this.userService.setSelectedUser(user);
-		this.consoleService.write("User %s %s. was added and selected.", user.getLastName(), user.getFirstName().substring(0,1));
+	@ShellMethod("Register new user")
+	public void registerUser(String firstName, String lastName, String email, String password, String confirmPassword) {
+		if (!password.equals(confirmPassword)){
+			this.consoleService.write("Incorrect confirmPassword field");
+		} else if (this.userService.getAll()
+				.stream()
+				.anyMatch(user -> user.getEmail().equalsIgnoreCase(email))) {
+			this.consoleService.write("User with the same email already existed");
+		} else {
+			User user = new User(firstName, lastName, email, password);
+			this.userService.save(user);
+			this.userService.loginAs(user);
+			this.consoleService.write("User %s %s. was added and selected.", user.getLastName(), user.getFirstName().substring(0, 1));
+		}
 	}
 
-	@ShellMethod("Show all users")
+	public Availability registerUserAvailability(){
+		return userService.isLoggedIn()? Availability.unavailable("You are already logged in.") : Availability.available();
+	}
+
+//	@ShellMethod("Show all users")
 	public void showAllUsers() {
 		this.userService.getAll()
 				.stream()
 				.forEach(user -> this.consoleService.write(user.toString()));
 	}
 
-	@ShellMethod("Get user by email")
-	public void getUserByEmail(String email) {
-		userService.getUserByEmail(email);
+	@ShellMethod("Login as existed user")
+	public void loginAs(User user, String password) {
+		if (!user.getPassword().equals(password)) {
+			this.consoleService.write("Incorrect user or password");
+		} else {
+			this.userService.setSelectedUser(user);
+			this.consoleService.write("Current user is %s.", user);
+		}
 	}
 
-	@ShellMethod("Select an user")
-	public void selectUser(User user) {
-		userService.setSelectedUser(user);
-		this.consoleService.write("Current user is %s.", user);
+	public Availability loginAsAvailability(){
+		return userService.isLoggedIn()? Availability.unavailable("You are already logged in.") : Availability.available();
 	}
+
+	@ShellMethod("Log out")
+	public void logOut() {
+		this.userService.logOut();
+		this.consoleService.write("You managed to log out.");
+	}
+
+	public Availability logOutAvailability(){
+		return userService.isLoggedIn()? Availability.available() : Availability.unavailable("You are not logged in.");
+	}
+
 }
 
 @ShellComponent
@@ -79,6 +106,9 @@ class EventCommands{
 	public void showAllEvents(){
 		this.eventService.getAll()
 				.stream()
-				.forEach(event -> this.consoleService.write(event.toString()));
+				.forEach(event -> {
+					this.consoleService.write(event.getName());
+					this.consoleService.write(event.getAuditoriums().keySet().toString());
+				});
 	}
 }

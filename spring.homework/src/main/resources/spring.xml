@@ -21,18 +21,21 @@
         <constructor-arg value="Yuriy"/>
         <constructor-arg value="Razzhivin"/>
         <constructor-arg value="yuriy_rzzhivin@epam.com"/>
+        <constructor-arg value="password1"/>
     </bean>
 
     <bean id="roman" class="com.epam.spring.homework.spring.homework.domain.User">
         <constructor-arg value="Roman"/>
         <constructor-arg value="Pechersky"/>
         <constructor-arg value="roman_pechersky@epam.com"/>
+        <constructor-arg value="password1"/>
     </bean>
 
     <bean id="anton" class="com.epam.spring.homework.spring.homework.domain.User">
         <constructor-arg value="Anton"/>
         <constructor-arg value="Shaklein"/>
         <constructor-arg value="anton_shaklein@epam.com"/>
+        <constructor-arg value="password1"/>
     </bean>
 
     <util:map id="defaultUsers" key-type="java.lang.Long">
@@ -50,43 +53,115 @@
 
 <!--EVENTS-->
 
-    <!--<bean id="dt" class="java.time.LocalDateTime" factory-method="of">-->
-        <!--<constructor-arg index="0" value="2018"/>-->
-        <!--<constructor-arg index="1">-->
-            <!--<bean class="java.time.Month">-->
-                <!--<property name="type" value="DECEMBER"/>-->
-            <!--</bean>-->
-        <!--</constructor-arg>-->
-        <!--<constructor-arg index="2" value="15"/>-->
-        <!--<constructor-arg index="3" value="15"/>-->
-        <!--<constructor-arg index="4" value="30"/>-->
-    <!--</bean>-->
+    <util:set id="setAirDates1" set-class="java.util.TreeSet">
+        <bean class="java.time.LocalDateTime" factory-method="of">
+            <constructor-arg value="2018"/>
+            <constructor-arg value="12"/>
+            <constructor-arg value="15"/>
+            <constructor-arg value="10"/>
+            <constructor-arg value="00"/>
+        </bean>
+        <bean class="java.time.LocalDateTime" factory-method="of">
+            <constructor-arg value="2018"/>
+            <constructor-arg value="12"/>
+            <constructor-arg value="15"/>
+            <constructor-arg value="19"/>
+            <constructor-arg value="00"/>
+        </bean>
+        <bean class="java.time.LocalDateTime" factory-method="of">
+            <constructor-arg value="2018"/>
+            <constructor-arg value="12"/>
+            <constructor-arg value="16"/>
+            <constructor-arg value="10"/>
+            <constructor-arg value="00"/>
+        </bean>
+        <bean class="java.time.LocalDateTime" factory-method="of">
+            <constructor-arg value="2018"/>
+            <constructor-arg value="12"/>
+            <constructor-arg value="16"/>
+            <constructor-arg value="19"/>
+            <constructor-arg value="00"/>
+        </bean>
+        <bean class="java.time.LocalDateTime" factory-method="of">
+            <constructor-arg value="2018"/>
+            <constructor-arg value="12"/>
+            <constructor-arg value="17"/>
+            <constructor-arg value="10"/>
+            <constructor-arg value="00"/>
+        </bean>
+        <bean class="java.time.LocalDateTime" factory-method="of">
+            <constructor-arg value="2018"/>
+            <constructor-arg value="12"/>
+            <constructor-arg value="17"/>
+            <constructor-arg value="19"/>
+            <constructor-arg value="00"/>
+        </bean>
+    </util:set>
 
-    <bean id="ldt1" class="java.time.LocalDateTime" factory-method="of">
-        <constructor-arg type="java.time.Month" value="DECEMBER"/>
-    </bean>
-
-    <util:set id="setAirDates" set-class="java.util.TreeSet">
-
+    <util:set id="setAirDates2" set-class="java.util.TreeSet">
+        <bean class="java.time.LocalDateTime" factory-method="of">
+            <constructor-arg value="2018"/>
+            <constructor-arg value="12"/>
+            <constructor-arg value="15"/>
+            <constructor-arg value="11"/>
+            <constructor-arg value="00"/>
+        </bean>
+        <bean class="java.time.LocalDateTime" factory-method="of">
+            <constructor-arg value="2018"/>
+            <constructor-arg value="12"/>
+            <constructor-arg value="15"/>
+            <constructor-arg value="20"/>
+            <constructor-arg value="00"/>
+        </bean>
+        <bean class="java.time.LocalDateTime" factory-method="of">
+            <constructor-arg value="2018"/>
+            <constructor-arg value="12"/>
+            <constructor-arg value="16"/>
+            <constructor-arg value="11"/>
+            <constructor-arg value="00"/>
+        </bean>
+        <bean class="java.time.LocalDateTime" factory-method="of">
+            <constructor-arg value="2018"/>
+            <constructor-arg value="12"/>
+            <constructor-arg value="16"/>
+            <constructor-arg value="20"/>
+            <constructor-arg value="00"/>
+        </bean>
+        <bean class="java.time.LocalDateTime" factory-method="of">
+            <constructor-arg value="2018"/>
+            <constructor-arg value="12"/>
+            <constructor-arg value="17"/>
+            <constructor-arg value="11"/>
+            <constructor-arg value="00"/>
+        </bean>
+        <bean class="java.time.LocalDateTime" factory-method="of">
+            <constructor-arg value="2018"/>
+            <constructor-arg value="12"/>
+            <constructor-arg value="17"/>
+            <constructor-arg value="20"/>
+            <constructor-arg value="00"/>
+        </bean>
     </util:set>
 
     <bean id="event1" class="com.epam.spring.homework.spring.homework.domain.Event">
         <property name="name" value="Contratiempo"/>
         <property name="basePrice" value="300"/>
         <property name="rating" value="HIGH"/>
-        <property name="airDates" ref="setAirDates"/>
+        <property name="airDates" ref="setAirDates1"/>
     </bean>
 
     <bean id="event2" class="com.epam.spring.homework.spring.homework.domain.Event">
         <property name="name" value="Contratiempo Part 2"/>
         <property name="basePrice" value="100"/>
         <property name="rating" value="LOW"/>
+        <property name="airDates" ref="setAirDates2"/>
     </bean>
 
     <bean id="event3" class="com.epam.spring.homework.spring.homework.domain.Event">
         <property name="name" value="Contratiempo Part 3"/>
         <property name="basePrice" value="150"/>
         <property name="rating" value="LOW"/>
+        <property name="airDates" ref="setAirDates1"/>
     </bean>
 
     <util:list id="defaultEvents" value-type="com.epam.spring.homework.spring.homework.domain.Event">
@@ -98,4 +173,53 @@
     <bean id="eventService" class="com.epam.spring.homework.spring.homework.services.EventService">
         <property name="events" ref="defaultEvents"/>
     </bean>
+
+    <bean id="eventConverter" class="com.epam.spring.homework.spring.homework.converters.EventConverter"/>
+    <bean id="eventValueProvider" class="com.epam.spring.homework.spring.homework.value_providers.EventValueProvider"/>
+
+    <!--AUDITORIUMS-->
+    <bean id="redAuditorium" class="com.epam.spring.homework.spring.homework.domain.Auditorium">
+        <property name="name" value="Red Auditorium"/>
+        <property name="numberOfSeats" value="50"/>
+    </bean>
+
+    <bean id="blueAuditorium" class="com.epam.spring.homework.spring.homework.domain.Auditorium">
+        <property name="name" value="Blue Auditorium"/>
+        <property name="numberOfSeats" value="50"/>
+    </bean>
+
+    <util:set id="premierVipSeats" value-type="java.land.Long">
+        <bean class="java.lang.Long">
+            <constructor-arg index="0" value="93"/>
+        </bean>
+        <bean class="java.lang.Long">
+            <constructor-arg index="0" value="94"/>
+        </bean>
+        <bean class="java.lang.Long">
+            <constructor-arg index="0" value="95"/>
+        </bean>
+        <bean class="java.lang.Long">
+            <constructor-arg index="0" value="96"/>
+        </bean>
+        <bean class="java.lang.Long">
+            <constructor-arg index="0" value="97"/>
+        </bean>
+    </util:set>
+
+    <bean id="premierAuditorium" class="com.epam.spring.homework.spring.homework.domain.Auditorium">
+        <property name="name" value="Premier Auditorium"/>
+        <property name="numberOfSeats" value="450"/>
+        <property name="vipSeats" ref="premierVipSeats"/>
+    </bean>
+
+    <util:set id="auditoriums" value-type="com.epam.spring.homework.spring.homework.domain.Auditorium">
+        <ref bean="redAuditorium"/>
+        <ref bean="blueAuditorium"/>
+        <ref bean="premierAuditorium"/>
+    </util:set>
+
+    <bean id="auditoriumService" class="com.epam.spring.homework.spring.homework.services.AuditoriumService">
+        <property name="auditoriums" ref="auditoriums"/>
+    </bean>
+
 </beans>

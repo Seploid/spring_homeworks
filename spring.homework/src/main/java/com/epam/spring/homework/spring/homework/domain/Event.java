@@ -1,5 +1,7 @@
 package com.epam.spring.homework.spring.homework.domain;
 
+import lombok.Data;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.NavigableMap;
@@ -11,6 +13,7 @@ import java.util.TreeSet;
 /**
  * @author Yuriy_Tkach
  */
+@Data
 public class Event extends DomainObject {
 
     private static Long counterOfIds = 0L;
@@ -31,7 +34,7 @@ public class Event extends DomainObject {
 
     @Override
     public String toString() {
-        return String.format("(#%s) %s", getId(), getName());
+        return String.format("(#%s) %s %s", getId(), getName(), getAirDates());
     }
 
     /**
@@ -147,46 +150,6 @@ public class Event extends DomainObject {
     public boolean airsOnDates(LocalDate from, LocalDate to) {
         return airDates.stream()
                 .anyMatch(dt -> dt.toLocalDate().compareTo(from) >= 0 && dt.toLocalDate().compareTo(to) <= 0);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public NavigableSet<LocalDateTime> getAirDates() {
-        return airDates;
-    }
-
-    public void setAirDates(NavigableSet<LocalDateTime> airDates) {
-        this.airDates = airDates;
-    }
-
-    public double getBasePrice() {
-        return basePrice;
-    }
-
-    public void setBasePrice(double basePrice) {
-        this.basePrice = basePrice;
-    }
-
-    public EventRating getRating() {
-        return rating;
-    }
-
-    public void setRating(EventRating rating) {
-        this.rating = rating;
-    }
-
-    public NavigableMap<LocalDateTime, Auditorium> getAuditoriums() {
-        return auditoriums;
-    }
-
-    public void setAuditoriums(NavigableMap<LocalDateTime, Auditorium> auditoriums) {
-        this.auditoriums = auditoriums;
     }
 
     @Override

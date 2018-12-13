@@ -22,12 +22,6 @@ public class UserService implements IUserService {
     }
 
     @Nullable
-    @Override
-    public User getUserByEmail(@Nonnull String email) {
-        return users.values().stream().filter(usr -> usr.getEmail().equals(email)).findFirst().get();
-    }
-
-    @Nullable
     public Collection<User> findByName(@Nonnull String name) {
         return users.values()
                 .stream()
@@ -55,5 +49,21 @@ public class UserService implements IUserService {
     public Collection<User> getAll() {
         return users.values();
     }
+
+    @Override
+    public boolean isLoggedIn() {
+        return getSelectedUser() != null;
+    }
+
+    @Override
+    public void loginAs(User user) {
+        this.selectedUser = user;
+    }
+
+    @Override
+    public void logOut() {
+        this.selectedUser = null;
+    }
+
 
 }
