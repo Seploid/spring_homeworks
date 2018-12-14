@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/spring-context-3.2.xsd">
+
+    <!--AUDITORIUMS-->
+    <bean id="redAuditorium" class="com.epam.spring.homework.spring.homework.domain.Auditorium">
+        <property name="name" value="Red Auditorium"/>
+        <property name="numberOfSeats" value="50"/>
+    </bean>
+
+    <bean id="blueAuditorium" class="com.epam.spring.homework.spring.homework.domain.Auditorium">
+        <property name="name" value="Blue Auditorium"/>
+        <property name="numberOfSeats" value="50"/>
+    </bean>
+
+    <util:set id="premierVipSeats" value-type="java.land.Long">
+        <bean class="java.lang.Long">
+            <constructor-arg index="0" value="93"/>
+        </bean>
+        <bean class="java.lang.Long">
+            <constructor-arg index="0" value="94"/>
+        </bean>
+        <bean class="java.lang.Long">
+            <constructor-arg index="0" value="95"/>
+        </bean>
+        <bean class="java.lang.Long">
+            <constructor-arg index="0" value="96"/>
+        </bean>
+        <bean class="java.lang.Long">
+            <constructor-arg index="0" value="97"/>
+        </bean>
+    </util:set>
+
+    <bean id="premierAuditorium" class="com.epam.spring.homework.spring.homework.domain.Auditorium">
+        <property name="name" value="Premier Auditorium"/>
+        <property name="numberOfSeats" value="450"/>
+        <property name="vipSeats" ref="premierVipSeats"/>
+    </bean>
+
+    <util:set id="auditoriums" value-type="com.epam.spring.homework.spring.homework.domain.Auditorium">
+        <ref bean="redAuditorium"/>
+        <ref bean="blueAuditorium"/>
+        <ref bean="premierAuditorium"/>
+    </util:set>
+
+    <bean id="auditoriumService" class="com.epam.spring.homework.spring.homework.services.AuditoriumService">
+        <property name="auditoriums" ref="auditoriums"/>
+    </bean>
+
+
+</beans>

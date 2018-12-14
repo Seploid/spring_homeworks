@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/spring-context-3.2.xsd">
+
+    <import resource="auditoriums_spring.xml"/>
+
+    <!--EVENTS-->
+
+    <bean id="ldt_2018_12_15_10_00" class="java.time.LocalDateTime" factory-method="of">
+        <constructor-arg value="2018"/>
+        <constructor-arg value="12"/>
+        <constructor-arg value="15"/>
+        <constructor-arg value="10"/>
+        <constructor-arg value="00"/>
+    </bean>
+
+    <bean id="ldt_2018_12_15_19_00" class="java.time.LocalDateTime" factory-method="of">
+        <constructor-arg value="2018"/>
+        <constructor-arg value="12"/>
+        <constructor-arg value="15"/>
+        <constructor-arg value="19"/>
+        <constructor-arg value="00"/>
+    </bean>
+
+    <bean id="ldt_2018_12_16_10_00" class="java.time.LocalDateTime" factory-method="of">
+        <constructor-arg value="2018"/>
+        <constructor-arg value="12"/>
+        <constructor-arg value="16"/>
+        <constructor-arg value="10"/>
+        <constructor-arg value="00"/>
+    </bean>
+
+    <bean id="ldt_2018_12_16_19_00" class="java.time.LocalDateTime" factory-method="of">
+        <constructor-arg value="2018"/>
+        <constructor-arg value="12"/>
+        <constructor-arg value="16"/>
+        <constructor-arg value="19"/>
+        <constructor-arg value="00"/>
+    </bean>
+
+    <bean id="ldt_2018_12_17_10_00" class="java.time.LocalDateTime" factory-method="of">
+        <constructor-arg value="2018"/>
+        <constructor-arg value="12"/>
+        <constructor-arg value="17"/>
+        <constructor-arg value="10"/>
+        <constructor-arg value="00"/>
+    </bean>
+
+    <bean id="ldt_2018_12_17_19_00" class="java.time.LocalDateTime" factory-method="of">
+        <constructor-arg value="2018"/>
+        <constructor-arg value="12"/>
+        <constructor-arg value="17"/>
+        <constructor-arg value="19"/>
+        <constructor-arg value="00"/>
+    </bean>
+
+    <bean id="ldt_2018_12_15_11_00" class="java.time.LocalDateTime" factory-method="of">
+        <constructor-arg value="2018"/>
+        <constructor-arg value="12"/>
+        <constructor-arg value="15"/>
+        <constructor-arg value="11"/>
+        <constructor-arg value="00"/>
+    </bean>
+
+    <bean id="ldt_2018_12_15_20_00" class="java.time.LocalDateTime" factory-method="of">
+        <constructor-arg value="2018"/>
+        <constructor-arg value="12"/>
+        <constructor-arg value="15"/>
+        <constructor-arg value="20"/>
+        <constructor-arg value="00"/>
+    </bean>
+
+    <bean id="ldt_2018_12_16_11_00" class="java.time.LocalDateTime" factory-method="of">
+        <constructor-arg value="2018"/>
+        <constructor-arg value="12"/>
+        <constructor-arg value="16"/>
+        <constructor-arg value="11"/>
+        <constructor-arg value="00"/>
+    </bean>
+
+    <bean id="ldt_2018_12_16_20_00" class="java.time.LocalDateTime" factory-method="of">
+        <constructor-arg value="2018"/>
+        <constructor-arg value="12"/>
+        <constructor-arg value="16"/>
+        <constructor-arg value="20"/>
+        <constructor-arg value="00"/>
+    </bean>
+
+    <bean id="ldt_2018_12_17_11_00" class="java.time.LocalDateTime" factory-method="of">
+        <constructor-arg value="2018"/>
+        <constructor-arg value="12"/>
+        <constructor-arg value="17"/>
+        <constructor-arg value="11"/>
+        <constructor-arg value="00"/>
+    </bean>
+
+    <bean id="ldt_2018_12_17_20_00" class="java.time.LocalDateTime" factory-method="of">
+        <constructor-arg value="2018"/>
+        <constructor-arg value="12"/>
+        <constructor-arg value="17"/>
+        <constructor-arg value="20"/>
+        <constructor-arg value="00"/>
+    </bean>
+
+    <util:map id="auditoriumsForEvent1">
+        <entry key-ref="ldt_2018_12_15_10_00" value-ref="redAuditorium"/>
+        <entry key-ref="ldt_2018_12_15_19_00" value-ref="premierAuditorium"/>
+        <entry key-ref="ldt_2018_12_16_10_00" value-ref="redAuditorium"/>
+        <entry key-ref="ldt_2018_12_16_19_00" value-ref="premierAuditorium"/>
+        <entry key-ref="ldt_2018_12_17_10_00" value-ref="redAuditorium"/>
+        <entry key-ref="ldt_2018_12_17_19_00" value-ref="premierAuditorium"/>
+    </util:map>
+
+    <util:map id="auditoriumsForEvent2">
+        <entry key-ref="ldt_2018_12_15_11_00" value-ref="premierAuditorium"/>
+        <entry key-ref="ldt_2018_12_15_20_00" value-ref="blueAuditorium"/>
+        <entry key-ref="ldt_2018_12_16_11_00" value-ref="premierAuditorium"/>
+        <entry key-ref="ldt_2018_12_16_20_00" value-ref="blueAuditorium"/>
+        <entry key-ref="ldt_2018_12_17_11_00" value-ref="premierAuditorium"/>
+        <entry key-ref="ldt_2018_12_17_20_00" value-ref="blueAuditorium"/>
+    </util:map>
+
+    <util:set id="setAirDatesForEvent1" set-class="java.util.TreeSet">
+        <ref bean="ldt_2018_12_15_10_00"/>
+        <ref bean="ldt_2018_12_15_19_00"/>
+        <ref bean="ldt_2018_12_16_10_00"/>
+        <ref bean="ldt_2018_12_16_19_00"/>
+        <ref bean="ldt_2018_12_17_10_00"/>
+        <ref bean="ldt_2018_12_17_19_00"/>
+    </util:set>
+
+    <util:set id="setAirDatesForEvent2" set-class="java.util.TreeSet">
+        <ref bean="ldt_2018_12_15_11_00"/>
+        <ref bean="ldt_2018_12_15_20_00"/>
+        <ref bean="ldt_2018_12_16_11_00"/>
+        <ref bean="ldt_2018_12_16_20_00"/>
+        <ref bean="ldt_2018_12_17_11_00"/>
+        <ref bean="ldt_2018_12_17_20_00"/>
+    </util:set>
+
+    <bean id="event1" class="com.epam.spring.homework.spring.homework.domain.Event">
+        <property name="name" value="Aquaman"/>
+        <property name="basePrice" value="5"/>
+        <property name="rating" value="HIGH"/>
+        <property name="airDates" ref="setAirDatesForEvent1"/>
+        <property name="auditoriums" ref="auditoriumsForEvent1"/>
+    </bean>
+
+    <bean id="event2" class="com.epam.spring.homework.spring.homework.domain.Event">
+        <property name="name" value="Spider-Man: Into the Spider-Verse"/>
+        <property name="basePrice" value="7"/>
+        <property name="rating" value="LOW"/>
+        <property name="airDates" ref="setAirDatesForEvent2"/>
+        <property name="auditoriums" ref="auditoriumsForEvent2"/>
+    </bean>
+
+    <util:list id="defaultEvents" value-type="com.epam.spring.homework.spring.homework.domain.Event">
+        <ref bean="event1"/>
+        <ref bean="event2"/>
+    </util:list>
+
+    <bean id="eventService" class="com.epam.spring.homework.spring.homework.services.EventService">
+        <property name="events" ref="defaultEvents"/>
+    </bean>
+
+    <bean id="eventConverter" class="com.epam.spring.homework.spring.homework.converters.EventConverter"/>
+    <bean id="eventValueProvider" class="com.epam.spring.homework.spring.homework.value_providers.EventValueProvider"/>
+    <bean id="localDateTimeConverter" class="com.epam.spring.homework.spring.homework.converters.LocalDateTimeConverter"/>
+    <bean id="localDateTimeValueProvider" class="com.epam.spring.homework.spring.homework.value_providers.LocalDateTimeProvider"/>
+
+
+
+</beans>

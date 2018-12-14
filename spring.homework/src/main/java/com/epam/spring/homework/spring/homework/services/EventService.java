@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -15,8 +16,15 @@ public class EventService implements IEventService {
 
     private List<Event> events = new ArrayList<>();
     private Event selectedEvent;
+    private LocalDateTime selectedAirDate;
 
+    public boolean isEventSelected() {
+        return selectedEvent != null;
+    }
 
+    public boolean isAirDateSelected() {
+        return selectedAirDate != null;
+    }
 
     @Override
     public Event save(@Nonnull Event event) {
@@ -49,7 +57,7 @@ public class EventService implements IEventService {
     public Collection<Event> getByName(@Nonnull String name) {
         return this.events
                 .stream()
-                .filter( event -> event.getName().contains(name))
+                .filter( event -> event.getName().toLowerCase().contains(name.toLowerCase()))
                 .collect(Collectors.toList());
     }
 }

@@ -25,7 +25,9 @@ public class UserService implements IUserService {
     public Collection<User> findByName(@Nonnull String name) {
         return users.values()
                 .stream()
-                .filter(usr -> usr.getEmail().contains(name) || usr.getFirstName().contains(name) || usr.getLastName().contains(name))
+                .filter(usr -> usr.getEmail().toLowerCase().contains(name.toLowerCase())
+                        || usr.getFirstName().toLowerCase().contains(name.toLowerCase())
+                        || usr.getLastName().contains(name.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
