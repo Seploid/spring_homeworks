@@ -2,6 +2,8 @@ package com.epam.spring.homework.spring.homework.services;
 
 import com.epam.spring.homework.spring.homework.domain.User;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -12,9 +14,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 @Data
+@Component
 public class UserService implements IUserService {
 
+    @Autowired
     private Map<Long, User> users = new ConcurrentHashMap<>();
+
     private User selectedUser;
 
     public void setUsers(Map<Long, User> users) {

@@ -4,6 +4,7 @@ import com.epam.spring.homework.spring.homework.domain.Event;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 /**
@@ -12,6 +13,11 @@ import java.util.Collection;
 public interface IEventService extends IAbstractDomainObjectService<Event> {
 
 
+    void setSelectedEvent(Event event);
+
+    void setSelectedAirDate(LocalDateTime localDateTime);
+
+    boolean isEventSelected();
 
     /**
      * Finding event by name

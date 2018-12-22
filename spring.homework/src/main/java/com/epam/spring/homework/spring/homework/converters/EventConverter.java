@@ -4,11 +4,13 @@ import com.epam.spring.homework.spring.homework.domain.Event;
 import com.epam.spring.homework.spring.homework.services.EventService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Component
 public class EventConverter implements Converter<String, Event> {
 
     private final EventService eventService;

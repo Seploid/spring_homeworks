@@ -2,6 +2,8 @@ package com.epam.spring.homework.spring.homework.services;
 
 import com.epam.spring.homework.spring.homework.domain.Event;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -12,8 +14,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
+@Component
 public class EventService implements IEventService {
 
+    @Autowired
     private List<Event> events = new ArrayList<>();
     private Event selectedEvent;
     private LocalDateTime selectedAirDate;

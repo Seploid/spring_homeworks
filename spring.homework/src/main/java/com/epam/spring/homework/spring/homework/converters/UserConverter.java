@@ -4,11 +4,13 @@ import com.epam.spring.homework.spring.homework.domain.User;
 import com.epam.spring.homework.spring.homework.services.UserService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Component
 public class UserConverter implements Converter<String, User> {
 
     private final UserService userService;

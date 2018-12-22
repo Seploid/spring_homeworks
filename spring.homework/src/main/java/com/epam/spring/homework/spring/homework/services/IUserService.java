@@ -9,6 +9,8 @@ public interface IUserService extends IAbstractDomainObjectService<User> {
 
     boolean isLoggedIn();
 
+    void setSelectedUser(User user);
+
     void loginAs(User user);
 
     void logOut();

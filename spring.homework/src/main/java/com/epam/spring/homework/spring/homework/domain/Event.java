@@ -4,11 +4,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.NavigableMap;
-import java.util.NavigableSet;
-import java.util.Objects;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * @author Yuriy_Tkach
@@ -20,7 +16,7 @@ public class Event extends DomainObject {
 
     private String name;
 
-    private NavigableSet<LocalDateTime> airDates = new TreeSet<>();
+    private Set<LocalDateTime> airDates = new TreeSet<>();
 
     private double basePrice;
 
@@ -28,7 +24,7 @@ public class Event extends DomainObject {
 
     private NavigableMap<LocalDateTime, Auditorium> auditoriums = new TreeMap<>();
 
-    Event(){
+    public Event(){
         this.setId(counterOfIds++);
     }
 

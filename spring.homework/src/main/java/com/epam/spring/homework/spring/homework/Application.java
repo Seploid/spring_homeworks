@@ -1,14 +1,19 @@
 package com.epam.spring.homework.spring.homework;
 
+import com.epam.spring.homework.spring.homework.config.AppConfig;
 import com.epam.spring.homework.spring.homework.domain.Event;
 import com.epam.spring.homework.spring.homework.domain.User;
 import com.epam.spring.homework.spring.homework.services.EventService;
+import com.epam.spring.homework.spring.homework.services.IEventService;
+import com.epam.spring.homework.spring.homework.services.IUserService;
 import com.epam.spring.homework.spring.homework.services.UserService;
 import com.epam.spring.homework.spring.homework.value_providers.EventValueProvider;
 import com.epam.spring.homework.spring.homework.value_providers.LocalDateTimeProvider;
 import com.epam.spring.homework.spring.homework.value_providers.UserValueProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.shell.Availability;
 import org.springframework.shell.standard.ShellComponent;
@@ -18,7 +23,7 @@ import org.springframework.shell.standard.ShellOption;
 import java.time.LocalDateTime;
 
 @SpringBootApplication
-@ImportResource("classpath:spring.xml")
+@Import(AppConfig.class)
 public class Application {
 
 	public static void main(String[] args) {
@@ -30,8 +35,11 @@ public class Application {
 @ShellComponent
 class UserCommands {
 
+	@Autowired
 	private final ConsoleService consoleService;
-	private final UserService userService;
+
+	@Autowired
+	private final IUserService userService;
 
 	UserCommands(ConsoleService consoleService, UserService userService) {
 		this.consoleService = consoleService;
@@ -94,8 +102,11 @@ class UserCommands {
 @ShellComponent
 class EventCommands{
 
+	@Autowired
 	private final ConsoleService consoleService;
-	private final EventService eventService;
+
+	@Autowired
+	private final IEventService eventService;
 
 	EventCommands(ConsoleService consoleService, EventService eventService) {
 		this.consoleService = consoleService;

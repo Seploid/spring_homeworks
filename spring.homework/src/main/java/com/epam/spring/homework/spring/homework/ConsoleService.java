@@ -1,7 +1,10 @@
 package com.epam.spring.homework.spring.homework;
 
+import org.springframework.stereotype.Component;
+
 import java.io.PrintStream;
 
+@Component
 public class ConsoleService {
 
 //    private final static String ANTI_RESET = "\u001B[0m";

@@ -4,7 +4,9 @@ import com.epam.spring.homework.spring.homework.services.EventService;
 import com.epam.spring.homework.spring.homework.services.UserService;
 import org.jline.utils.AttributedString;
 import org.springframework.shell.jline.PromptProvider;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ConsolePromptProvider implements PromptProvider {
 
     private final UserService userService;
