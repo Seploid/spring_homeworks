@@ -37,15 +37,10 @@ public class Application {
 class UserCommands {
 
 	@Autowired
-	private final ConsoleService consoleService;
+	private ConsoleService consoleService;
 
 	@Autowired
-	private final IUserService userService;
-
-	UserCommands(ConsoleService consoleService, UserService userService) {
-		this.consoleService = consoleService;
-		this.userService = userService;
-	}
+	private IUserService userService;
 
 	@ShellMethod("Register new user")
 	public void registerUser(String firstName, String lastName, String email, String password, String confirmPassword) {
@@ -104,15 +99,10 @@ class UserCommands {
 class EventCommands{
 
 	@Autowired
-	private final ConsoleService consoleService;
+	private ConsoleService consoleService;
 
 	@Autowired
-	private final IEventService eventService;
-
-	EventCommands(ConsoleService consoleService, EventService eventService) {
-		this.consoleService = consoleService;
-		this.eventService = eventService;
-	}
+	private IEventService eventService;
 
 	@ShellMethod("Select event.")
 	public void selectEvent(@ShellOption(valueProvider = EventValueProvider.class) Event event){
@@ -186,7 +176,7 @@ class BookingCommand{
 	}
 
 	public Availability bookSelectedSeatsAvailability(){
-		return eventService.getSelectedSeats() != null? Availability.available() : Availability.unavailable("You are not selected event/airdate/seats.");
+		return eventService.getSelectedSeats() != null && userService.isLoggedIn() ? Availability.available() : Availability.unavailable("You are not selected event/airdate/seats.");
 	}
 
 	@ShellMethod("Show price of selected seats.")
@@ -195,6 +185,6 @@ class BookingCommand{
 	}
 
 	public Availability showPriceSelectedSeatsAvailability(){
-		return eventService.getSelectedSeats() != null? Availability.available() : Availability.unavailable("You are not selected event/airdate/seats.");
+		return eventService.getSelectedSeats() != null && userService.isLoggedIn() ? Availability.available() : Availability.unavailable("You are not selected event/airdate/seats.");
 	}
 }
