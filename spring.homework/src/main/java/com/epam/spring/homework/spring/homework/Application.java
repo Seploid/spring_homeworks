@@ -2,13 +2,12 @@ package com.epam.spring.homework.spring.homework;
 
 import com.epam.spring.homework.spring.homework.config.AppConfig;
 import com.epam.spring.homework.spring.homework.domain.Event;
+import com.epam.spring.homework.spring.homework.domain.Ticket;
 import com.epam.spring.homework.spring.homework.domain.User;
-import com.epam.spring.homework.spring.homework.services.EventService;
-import com.epam.spring.homework.spring.homework.services.IEventService;
-import com.epam.spring.homework.spring.homework.services.IUserService;
-import com.epam.spring.homework.spring.homework.services.UserService;
+import com.epam.spring.homework.spring.homework.services.*;
 import com.epam.spring.homework.spring.homework.value_providers.EventValueProvider;
 import com.epam.spring.homework.spring.homework.value_providers.LocalDateTimeProvider;
+import com.epam.spring.homework.spring.homework.value_providers.SeatsValueProvider;
 import com.epam.spring.homework.spring.homework.value_providers.UserValueProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -21,6 +20,8 @@ import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
 import java.time.LocalDateTime;
+import java.util.Set;
+import java.util.TreeSet;
 
 @SpringBootApplication
 @Import(AppConfig.class)
@@ -140,5 +141,60 @@ class EventCommands{
 
 	public Availability selectAidDateAvailability(){
 		return eventService.isEventSelected()? Availability.available() : Availability.unavailable("You are not selected event.");
+	}
+
+	@ShellMethod("Select seats for selected Event/AirDate.")
+	public void selectSeats(@ShellOption(valueProvider = SeatsValueProvider.class)Long seat){
+		this.eventService.selectSeat(seat);
+		this.consoleService.writeln("Selected seats is %s.", eventService.getSelectedSeats().toString());
+	}
+
+	public Availability selectSeatsAvailability(){
+		return eventService.isAirDateSelected()? Availability.available() : Availability.unavailable("You are not selected Air Date.");
+	}
+
+}
+
+@ShellComponent
+class BookingCommand{
+
+	@Autowired
+	private ConsoleService consoleService;
+
+	@Autowired
+	private IEventService eventService;
+
+	@Autowired
+	private IUserService userService;
+
+	@Autowired
+	private IBookingService bookingService;
+
+	@ShellMethod("Book selected seats.")
+	public void bookSelectedSeats(){
+		Set<Ticket> tickets = new TreeSet();
+
+		eventService.getSelectedSeats()
+				.forEach(s -> tickets.add(new Ticket(userService.getSelectedUser(), eventService.getSelectedEvent(), eventService.getSelectedAirDate(), s)));
+
+
+		bookingService.bookTickets(tickets);
+
+		eventService.clear();
+
+		consoleService.writeln("Tickets was managed to book.");
+	}
+
+	public Availability bookSelectedSeatsAvailability(){
+		return eventService.getSelectedSeats() != null? Availability.available() : Availability.unavailable("You are not selected event/airdate/seats.");
+	}
+
+	@ShellMethod("Show price of selected seats.")
+	public void showPriceSelectedSeats(){
+		consoleService.writeln("Price of selected tickets is %s", bookingService.getTicketsPrice(eventService.getSelectedEvent(), eventService.getSelectedAirDate(), userService.getSelectedUser(), eventService.getSelectedSeats()));
+	}
+
+	public Availability showPriceSelectedSeatsAvailability(){
+		return eventService.getSelectedSeats() != null? Availability.available() : Availability.unavailable("You are not selected event/airdate/seats.");
 	}
 }

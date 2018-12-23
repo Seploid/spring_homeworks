@@ -6,18 +6,30 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * @author Yuriy_Tkach
  */
 public interface IEventService extends IAbstractDomainObjectService<Event> {
 
+    void clear();
 
     void setSelectedEvent(Event event);
 
+    Event getSelectedEvent();
+
     void setSelectedAirDate(LocalDateTime localDateTime);
 
+    LocalDateTime getSelectedAirDate();
+
+    void selectSeat(Long seat);
+
+    Set<Long> getSelectedSeats();
+
     boolean isEventSelected();
+
+    boolean isAirDateSelected();
 
     /**
      * Finding event by name

@@ -8,19 +8,42 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Data
 @Component
 public class EventService implements IEventService {
 
-    @Autowired
-    private List<Event> events = new ArrayList<>();
+
     private Event selectedEvent;
     private LocalDateTime selectedAirDate;
+    private Set<Long> selectedSeats;
+    @Autowired
+    private List<Event> events = new ArrayList<>();
+
+    @Override
+    public void clear() {
+        this.selectedEvent = null;
+        this.selectedAirDate = null;
+        this.selectedSeats = null;
+    }
+
+    public void setSelectedEvent(Event selectedEvent) {
+        this.selectedEvent = selectedEvent;
+        this.selectedAirDate = null;
+        this.selectedSeats = null;
+    }
+
+    public void setSelectedAirDate(LocalDateTime selectedAirDate) {
+        this.selectedAirDate = selectedAirDate;
+        this.selectedSeats = new TreeSet<>();
+    }
+
+    @Override
+    public void selectSeat(Long seat) {
+        selectedSeats.add(seat);
+    }
 
     public boolean isEventSelected() {
         return selectedEvent != null;
@@ -29,6 +52,8 @@ public class EventService implements IEventService {
     public boolean isAirDateSelected() {
         return selectedAirDate != null;
     }
+
+
 
     @Override
     public Event save(@Nonnull Event event) {

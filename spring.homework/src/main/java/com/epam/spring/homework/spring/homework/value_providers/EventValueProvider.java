@@ -2,6 +2,7 @@ package com.epam.spring.homework.spring.homework.value_providers;
 
 import com.epam.spring.homework.spring.homework.domain.Event;
 import com.epam.spring.homework.spring.homework.services.EventService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.shell.CompletionContext;
 import org.springframework.shell.CompletionProposal;
@@ -14,11 +15,8 @@ import java.util.stream.Collectors;
 @Component
 public class EventValueProvider implements ValueProvider {
 
-    private final EventService eventService;
-
-    public EventValueProvider(EventService eventService) {
-        this.eventService = eventService;
-    }
+    @Autowired
+    private EventService eventService;
 
     @Override
     public boolean supports(MethodParameter methodParameter, CompletionContext completionContext) {

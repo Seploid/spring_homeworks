@@ -11,6 +11,8 @@ public interface IUserService extends IAbstractDomainObjectService<User> {
 
     void setSelectedUser(User user);
 
+    User getSelectedUser();
+
     void loginAs(User user);
 
     void logOut();

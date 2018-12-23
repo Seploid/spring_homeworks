@@ -2,6 +2,7 @@ package com.epam.spring.homework.spring.homework.converters;
 
 import com.epam.spring.homework.spring.homework.domain.User;
 import com.epam.spring.homework.spring.homework.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -13,14 +14,11 @@ import java.util.regex.Pattern;
 @Component
 public class UserConverter implements Converter<String, User> {
 
-    private final UserService userService;
+    @Autowired
+    private UserService userService;
 
     // (#45) foo bar
     private final Pattern pattern = Pattern.compile("\\(#(.*)\\)");
-
-    public UserConverter(UserService userService) {
-        this.userService = userService;
-    }
 
     @Nullable
     @Override

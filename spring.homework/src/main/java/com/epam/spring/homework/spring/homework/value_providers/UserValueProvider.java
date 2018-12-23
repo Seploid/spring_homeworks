@@ -2,6 +2,7 @@ package com.epam.spring.homework.spring.homework.value_providers;
 
 import com.epam.spring.homework.spring.homework.domain.User;
 import com.epam.spring.homework.spring.homework.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.shell.CompletionContext;
 import org.springframework.shell.CompletionProposal;
@@ -14,11 +15,8 @@ import java.util.stream.Collectors;
 @Component
 public class UserValueProvider implements ValueProvider{
 
-    private final UserService userService;
-
-    public UserValueProvider(UserService userService) {
-        this.userService = userService;
-    }
+    @Autowired
+    private UserService userService;
 
     @Override
     public boolean supports(MethodParameter methodParameter, CompletionContext completionContext) {
