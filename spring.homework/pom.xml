@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>spring.homework</name>
-	<description>Demo project for Spring Boot + implementation from Yuriy Razzhivin </description>
+	<description>Spring Framework #47 - implementation from Yuriy Razzhivin </description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -66,6 +66,17 @@
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>1.8.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>10.11.1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
 		</dependency>
 	</dependencies>
 
