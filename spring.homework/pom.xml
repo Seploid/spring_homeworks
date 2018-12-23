@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>spring.homework</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo project for Spring Boot + implementation from Yuriy Razzhivin </description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -54,6 +54,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.8.9</version>
 		</dependency>
 	</dependencies>
 

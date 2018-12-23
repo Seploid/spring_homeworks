@@ -185,6 +185,6 @@ class BookingCommand{
 	}
 
 	public Availability showPriceSelectedSeatsAvailability(){
-		return eventService.getSelectedSeats() != null && userService.isLoggedIn() ? Availability.available() : Availability.unavailable("You are not selected event/airdate/seats.");
+		return eventService.getSelectedSeats() != null && userService.isLoggedIn() ? Availability.available() : Availability.unavailable("You are not selected user/event/airdate/seats.");
 	}
 }
