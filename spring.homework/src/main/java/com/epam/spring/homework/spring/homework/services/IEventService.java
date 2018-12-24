@@ -1,17 +1,21 @@
 package com.epam.spring.homework.spring.homework.services;
 
+import com.epam.spring.homework.spring.homework.domain.Auditorium;
 import com.epam.spring.homework.spring.homework.domain.Event;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.NavigableMap;
 import java.util.Set;
 
 /**
  * @author Yuriy_Tkach
  */
 public interface IEventService extends IAbstractDomainObjectService<Event> {
+
+    NavigableMap<LocalDateTime, Auditorium> getAuditoriums(Event event);
 
     void clear();
 

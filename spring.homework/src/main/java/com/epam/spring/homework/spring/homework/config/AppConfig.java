@@ -8,7 +8,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 @Configuration
 @EnableAspectJAutoProxy
 @PropertySource("jdbc.properties")
-@Import({UsersConfig.class, EventsConfig.class})
 public class AppConfig {
 
     @Value("${jdbc.driverClassName}")
@@ -17,10 +16,10 @@ public class AppConfig {
     @Value("${jdbc.url}")
     String url;
 
-    @Value("jdbc.username")
+    @Value("${jdbc.username}")
     String username;
 
-    @Value("jdbc.password")
+    @Value("${jdbc.password}")
     String password;
 
 

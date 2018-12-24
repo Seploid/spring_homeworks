@@ -26,7 +26,7 @@ public class LocalDateTimeProvider implements ValueProvider {
     @Override
     public List<CompletionProposal> complete(MethodParameter methodParameter, CompletionContext completionContext, String[] strings) {
 //        String currentInput = completionContext.currentWordUpToCursor();
-        return eventService.getSelectedEvent().getAirDates()
+        return eventService.getAuditoriums(eventService.getSelectedEvent()).keySet()
                 .stream()
                 .map( ldt -> ldt.toString())
                 .map(CompletionProposal::new)

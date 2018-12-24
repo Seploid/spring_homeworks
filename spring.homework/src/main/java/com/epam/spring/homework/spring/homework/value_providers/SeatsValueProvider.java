@@ -30,7 +30,7 @@ public class SeatsValueProvider implements ValueProvider {
 
     @Override
     public List<CompletionProposal> complete(MethodParameter methodParameter, CompletionContext completionContext, String[] strings) {
-        return eventService.getSelectedEvent().getAuditoriums()
+        return eventService.getAuditoriums(eventService.getSelectedEvent())
                 .get(eventService.getSelectedAirDate()).getAllSeats()
                 .stream()
                 .filter(s -> !eventService.getSelectedSeats().contains(s))

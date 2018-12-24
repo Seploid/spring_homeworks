@@ -28,8 +28,7 @@ public class SeatConverter implements Converter<String, Long> {
             if (StringUtils.hasText(group)){
                 Long seat = Long.parseLong(group);
                 return this.eventService
-                        .getSelectedEvent()
-                        .getAuditoriums()
+                        .getAuditoriums(this.eventService.getSelectedEvent())
                         .get(eventService.getSelectedAirDate())
                         .getAllSeats().contains(seat)? seat: null;
 //                todo: add booking service for excuding bought tickets(seats)

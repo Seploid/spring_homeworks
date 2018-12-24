@@ -1,5 +1,7 @@
 package com.epam.spring.homework.spring.homework.domain;
 
+import lombok.Data;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
@@ -10,7 +12,8 @@ import java.util.stream.LongStream;
 /**
  * @author Yuriy_Tkach
  */
-public class Auditorium {
+@Data
+public class Auditorium extends DomainObject{
 
     private String name;
 

@@ -24,8 +24,12 @@ public class ConsolePromptProvider implements PromptProvider {
             tip = "You need to select existed or add new user:";
         } else if (this.eventService.getSelectedEvent() == null) {
             tip = "You need to select event:";
+        } else if (this.eventService.getSelectedAirDate() == null){
+            tip = "You need to select AirDate:";
+        } else if (this.eventService.getSelectedSeats() == null){
+            tip = "You need to select seats:";
         } else {
-            tip = "You need to select auditorium:";
+            tip = "You can book your tickets:";
         }
         return new AttributedString(String.format("TIP[%s]> ", tip));
     }

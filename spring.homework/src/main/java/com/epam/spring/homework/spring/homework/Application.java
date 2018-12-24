@@ -62,13 +62,6 @@ class UserCommands {
 		return userService.isLoggedIn()? Availability.unavailable("You are already logged in.") : Availability.available();
 	}
 
-//	@ShellMethod("Show all users")
-	public void showAllUsers() {
-		this.userService.getAll()
-				.stream()
-				.forEach(user -> this.consoleService.writeln(user.toString()));
-	}
-
 	@ShellMethod("Login as existed user")
 	public void loginAs(@ShellOption(valueProvider = UserValueProvider.class) User user, String password) {
 		if (!user.getPassword().equals(password)) {
@@ -109,7 +102,8 @@ class EventCommands{
 		this.eventService.setSelectedEvent(event);
 		this.consoleService.writeln("Selected event is %s.", event.getName());
 		this.consoleService.writeln("Available air dates: ");
-		event.getAuditoriums().forEach((localDateTime, auditorium) -> this.consoleService.write(String.format("%s[%s]  ", localDateTime, auditorium.getName())));
+		eventService.getAuditoriums(event).forEach((localDateTime, auditorium) -> this.consoleService.write(String.format("%s[%s]  ", localDateTime, auditorium.getName())));
+//		event.getAuditoriums().forEach((localDateTime, auditorium) -> this.consoleService.write(String.format("%s[%s]  ", localDateTime, auditorium.getName())));
 		this.consoleService.writeln("");
 	}
 
@@ -119,7 +113,7 @@ class EventCommands{
 				.stream()
 				.forEach(event -> {
 					this.consoleService.writeln(String.format("Event: %s",event.getName()));
-					this.consoleService.writeln(String.format("Air Dates: %s ",event.getAuditoriums().keySet().toString()));
+					this.consoleService.writeln(String.format("Air Dates: %s ", eventService.getAuditoriums(event).keySet().toString()));
 				});
 	}
 

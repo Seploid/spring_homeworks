@@ -28,5 +28,7 @@ public interface IAuditoriumService {
      */
     public @Nullable Auditorium getByName(@Nonnull String name);
 
+    public @Nullable Auditorium getById(@Nonnull Long id);
+
 }
 
